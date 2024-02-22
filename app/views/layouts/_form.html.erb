@@ -1,0 +1,31 @@
+<div class="container px-lg-5 mt-5">
+  <%= form_with model: item,url: url, local: true do |f| %>
+    <div class="mb-5">
+      <%= f.label :name %>
+      <%= f.text_field :name, class:"form-control" %>
+    </div>
+    <div class="mb-5">
+      <%= f.label :price %>
+      <%= f.number_field :price, class:"form-control" %>
+    </div>
+    <div class="mb-5">
+      <%= f.label :describe %>
+      <%= f.text_area :describe, class:"form-control" %>
+    </div>
+    <div class="mb-5">
+      <%= f.label :sku %>
+      <%= f.text_field :sku, class:"form-control" %>
+    </div>
+    <div class="mb-5">
+      <%= f.label :stock %>
+      <%= f.number_field :stock, class:"form-control" %>
+    </div>
+    <div class="mb-5">
+      <%= f.label :image %>
+      <%= f.file_field :image, class:"form-control" %>
+    </div>
+    <div class="mb-5">
+      <%= f.submit "登録", class:"btn btn-primary"%>
+    </div>
+  <% end  %>
+</div>

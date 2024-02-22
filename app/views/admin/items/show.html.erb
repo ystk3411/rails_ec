@@ -1,0 +1,19 @@
+<!-- Product section-->
+<section class="py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="row gx-4 gx-lg-5 align-items-center">
+      <div class="col-md-6 text-center"><%= image_tag(@item.image) %></div>
+      <div class="col-md-6">
+        <div class="small mb-1"><%= @item.sku %></div>
+        <h1 class="display-5 fw-bolder"><%= @item.name %></h1>
+        <div class="fs-5 mb-5">
+          <span><%= number_to_currency(@item.price,locale:'jp') %></span>
+        </div>
+        <p class="lead"><%= @item.describe %></p>
+        <div class="d-flex">
+          <%= link_to "編集", edit_admin_item_path, class:"btn btn-outline-dark" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
