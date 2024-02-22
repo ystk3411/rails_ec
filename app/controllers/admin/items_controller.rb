@@ -21,11 +21,6 @@ module Admin
       end
     end
 
-    def show
-      @item = Item.find(params[:id])
-      @item_latest = Item.last
-    end
-
     def edit
       @item = Item.find(params[:id])
     end

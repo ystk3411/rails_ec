@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   namespace :admin do
-    resources :items, only: %i[index new create show edit update destroy]
+    resources :items, only: %i[index new create edit update destroy]
   end
   root 'items#index'
   resources :items
