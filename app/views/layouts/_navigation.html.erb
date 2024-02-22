@@ -18,11 +18,18 @@
         </li>
       </ul>
       <form class="d-flex">
-        <button class="btn btn-outline-dark" type="submit">
-          <i class="bi-cart-fill me-1"></i>
-          カート
-          <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-        </button>
+        
+          <% if request.path.include?("admin") %>
+            <%= link_to "新規作成", new_admin_item_path,class: "btn btn-outline-primary"%>
+          <% else %>
+            <button class="btn btn-outline-dark" type="submit">
+              <i class="bi-cart-fill me-1"></i>
+              カート
+              <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+            </button>
+          <% end %>
+          
+        
       </form>
     </div>
   </div>
