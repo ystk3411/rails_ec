@@ -9,7 +9,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
   <body>
-    <%=render partial: 'layouts/navigation' %>
+    <%=render 'layouts/navigation',item_size:cart_item_size %>
     <%= yield %>
     <%=render partial: 'layouts/footer' %>
   </body>
