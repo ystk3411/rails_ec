@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CartsController < ApplicationController
-  before_action :current_cart
 
   def index
     @items = current_cart.cart_items.includes([:item]).order(created_at: :desc)
@@ -9,7 +8,7 @@ class CartsController < ApplicationController
 
   def create
     cart_item ||= current_cart.cart_items.build(item_id: params[:item_id])
-    cart_item.increment!(:quantity, params[:quantity].to_i)
+    cart_item.increment(:quantity, params[:quantity].to_i)
 
     if cart_item.save
       redirect_to request.referer
