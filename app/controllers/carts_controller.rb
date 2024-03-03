@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CartsController < ApplicationController
-
   def index
     @items = current_cart.cart_items.includes([:item]).order(created_at: :desc)
   end
