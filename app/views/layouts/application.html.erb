@@ -10,6 +10,7 @@
   </head>
   <body>
     <%=render 'layouts/navigation',item_size:cart_item_size %>
+    <%= render 'layouts/flash_message' %>
     <%= yield %>
     <%=render partial: 'layouts/footer' %>
   </body>
