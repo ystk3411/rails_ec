@@ -22,6 +22,8 @@ class OrdersController < ApplicationController
     end
 
     flash[:info] = "購入ありがとうございます"
+    p order.first_name
+    OrderMailer.order_email(order,current_cart.cart_items.includes([:item]).order(created_at: :desc)).deliver_now
     current_cart.cart_items.destroy_all
     redirect_to items_path
 
