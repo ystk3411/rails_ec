@@ -5,13 +5,14 @@
   <body>
     <p><%= @order.last_name %><%= @order.first_name %>様、ご購入いただきありがとうございます！</p>
     <h1>ご利用内容</h1>
-    <%= @items.each do |item| %>
+      ---------------------------------
+    <% @items.each do |item| %>
       <p>商品：<%= item.item.name %></p>
       <p>個数：<%= item.quantity %></p>
       ---------------------------------
     <% end %>
     <p>
-      ご利用金額：<%= %>円
+      ご利用金額：<%= number_to_currency(cart_price_total,locale:'jp') %>円
     </p>
   </body>
 </html>
