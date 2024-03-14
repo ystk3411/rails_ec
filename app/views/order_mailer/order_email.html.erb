@@ -9,10 +9,8 @@
     <% @items.each do |item| %>
       <p>商品：<%= item.item.name %></p>
       <p>個数：<%= item.quantity %></p>
+      <p>価格：<%= item.item.price * item.quantity %>円</p>
       ---------------------------------
     <% end %>
-    <p>
-      ご利用金額：<%= @price_total %>円
-    </p>
   </body>
 </html>

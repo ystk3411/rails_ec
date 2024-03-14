@@ -1,11 +1,9 @@
 class OrderMailer < ApplicationMailer
-  default from: 'kobazon@example.com'
-  helper CartsHelper
+  helper :carts
 
-  def order_email(email,item)
-    @order = email
+  def order_email(order,item)
+    @order = order
     @items = item
-    @price_total = number_to_currency(cart_price_total,locale:'jp')
     mail(to: @order.email, subject: 'ご購入ありがとうございます')
   end
 end
