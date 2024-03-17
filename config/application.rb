@@ -29,5 +29,9 @@ module Myapp
       g.factory_bot false
     end
     config.action_view.default_form_builder = 'ApplicationFormBuilder'
+    config.time_zone = 'Asia/Tokyo'
+    config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    I18n.available_locales = [:en, :pt]
   end
 end

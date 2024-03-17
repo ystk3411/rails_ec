@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
+  # before_action :basic_auth, only: %i[index show]
   def index
-    @orders = current_cart.order.order_detail.includes([:item]).order(created_at: :desc)
+    @orders = current_cart.order
   end
 
   def show
@@ -8,6 +9,7 @@ class OrdersController < ApplicationController
 
   def create
     order = Order.new(order_params)
+    order[:cart_id] = current_cart.id
     order.save
     cart_items = current_cart.cart_items.all
 
@@ -27,11 +29,16 @@ class OrdersController < ApplicationController
     current_cart.cart_items.destroy_all
     redirect_to items_path
 
-
   end
 
   private
   def order_params
     params.require(:order).permit(%i[first_name last_name username email address1 address2 country prefecture zip_code name_on_card credit_card_number credit_card_expiration cvv cart_id])
+  end
+
+  def basic_auth
+    authenticate_or_request_with_http_basic do |name, password|
+      name == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
+    end
   end
 end

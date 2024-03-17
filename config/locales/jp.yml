@@ -6,3 +6,7 @@ jp:
         format: "%n%u"
         negative_format: "-%n%u"
         precision: 0
+
+  time:
+    formats:
+        full_date: "%Y年%m月%d日 (%a)"
