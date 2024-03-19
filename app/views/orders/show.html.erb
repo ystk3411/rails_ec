@@ -13,7 +13,7 @@
     <% end %>
     <h2>請求先住所</h2>
     <div class="mb-5 border border-dark">
-        <h2><%= @order.zip_code %></h2>
+        <h2><%= zip_code_format(@order.zip_code) %></h2>
         <h2><%= @order.prefecture %></h2>
         <h2><%= @order.address1 %></h2>
         <h2><%= @order.address2 %></h2>
