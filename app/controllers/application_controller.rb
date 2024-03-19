@@ -3,6 +3,15 @@
 class ApplicationController < ActionController::Base
   before_action :current_cart
 
+  def cart_price_total
+    total = 0
+
+    current_cart.cart_items.each do |item|
+      total += item.item.price * item.quantity
+    end
+    total
+  end
+
   private
 
   def current_cart

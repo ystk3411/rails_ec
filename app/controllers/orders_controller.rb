@@ -1,10 +1,13 @@
 class OrdersController < ApplicationController
-  # before_action :basic_auth, only: %i[index show]
+  before_action :basic_auth, only: %i[index show]
   def index
     @orders = current_cart.order
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_details = OrderDetail.where(order_id: params[:id])
+    @order_price = OrderDetail.find(params[:id]).price
   end
 
   def create
@@ -18,7 +21,7 @@ class OrdersController < ApplicationController
       order_details.order_id = order.id
       order_details.item_id= item.item.id
       order_details.name = item.item.name
-      order_details.price = item.item.price
+      order_details.price = cart_price_total
       order_details.quantity = item.quantity
       order_details.save
     end

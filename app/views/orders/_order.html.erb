@@ -2,8 +2,7 @@
   <div class="card h-100">
     <div class="card-body p-4">
       <div class="text-center">
-        <h5 class="fw-bolder"><%= link_to "#{l order.created_at, format: :full_date}", order_path(order.id) %></h5>
-        <%=  %>
+        <h5 class="fw-bolder"><%= link_to "購入日時：#{l order.created_at, format: :short}", order_path(order.id) %></h5>
       </div>
     </div>
   </div>
