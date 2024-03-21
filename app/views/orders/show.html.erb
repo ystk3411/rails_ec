@@ -20,6 +20,6 @@
   </div>
   <h2>注文の合計</h2>
   <div class="mb-5 border border-dark">
-    <h2><%= number_to_currency(@order_price,locale:'jp') %></h2>
+    <h2><%= number_to_currency(@order_details[0].price,locale:'jp') %></h2>
   </div>
 </div>

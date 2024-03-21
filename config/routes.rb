@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'orders/index'
-  get 'orders/show'
   namespace :admin do
     resources :items, only: %i[index new create edit update destroy]
   end
@@ -11,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :carts
 
-  resources :orders
+  resources :orders, only: %i[index show]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
