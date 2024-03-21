@@ -15,10 +15,12 @@ class OrdersController < ApplicationController
   end
 
   def create
+    # メーラーのメソッドの引数として使用するためトランザクションのブロック外に変数を定義
+    order = Order.new(order_params)
+    order[:cart_id] = current_cart.id
+
     ActiveRecord::Base.transaction do
-      order = Order.new(order_params)
-      order[:cart_id] = current_cart.id
-      order.save
+      order.save!
       cart_items = current_cart.cart_items.all
 
       cart_items.each do |item|
@@ -28,7 +30,7 @@ class OrdersController < ApplicationController
         order_details.name = item.item.name
         order_details.price = cart_price_total
         order_details.quantity = item.quantity
-        order_details.save
+        order_details.save!
       end
     end
 
