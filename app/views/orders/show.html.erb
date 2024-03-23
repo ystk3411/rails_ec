@@ -1,0 +1,25 @@
+<div class="container px-lg-5 mt-5">
+  <div class="mb-6 text-center">
+    <span class="text-3xl font-bold">
+      <h1>購入明細</h1>
+    </span>
+  </div>
+  <h2>購入内容</h2>
+  <% @order_details.each do |order| %>
+    <div class="mb-5 border border-dark">
+      <h2>購入品：<%= order.name %></h2>
+      <h2>個数：<%= order.quantity %></h2>
+    </div>
+  <% end %>
+  <h2>請求先住所</h2>
+  <div class="mb-5 border border-dark">
+    <h2><%= zip_code_format(@order.zip_code) %></h2>
+    <h2><%= @order.prefecture %></h2>
+    <h2><%= @order.address1 %></h2>
+    <h2><%= @order.address2 %></h2>
+  </div>
+  <h2>注文の合計</h2>
+  <div class="mb-5 border border-dark">
+    <h2><%= number_to_currency(@order_details[0].price,locale:'jp') %></h2>
+  </div>
+</div>

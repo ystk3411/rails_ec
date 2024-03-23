@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p><%= @order.last_name %><%= @order.first_name %>様、ご購入いただきありがとうございます！</p>
+    <h1>ご利用内容</h1>
+    ---------------------------------
+    <% @items.each do |item| %>
+      <p>商品：<%= item.item.name %></p>
+      <p>個数：<%= item.quantity %></p>
+      <p>価格：<%= item.item.price * item.quantity %>円</p>
+      ---------------------------------
+    <% end %>
+  </body>
+</html>

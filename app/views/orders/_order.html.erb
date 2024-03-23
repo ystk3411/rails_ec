@@ -1,0 +1,9 @@
+<div class="col mb-5">
+  <div class="card h-100">
+    <div class="card-body p-4">
+      <div class="text-center">
+        <h5 class="fw-bolder"><%= link_to "購入日時：#{l order.created_at, format: :short}", order_path(order.id) %></h5>
+      </div>
+    </div>
+  </div>
+</div>

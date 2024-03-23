@@ -3,6 +3,7 @@
 class CartsController < ApplicationController
   def index
     @items = current_cart.cart_items.includes([:item]).order(created_at: :desc)
+    @order = Order.new
   end
 
   def create
