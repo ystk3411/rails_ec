@@ -11,9 +11,11 @@ Rails.application.routes.draw do
 
   resources :carts
 
-  resources :orders, only: [:index,:show,:create]
+  resources :orders, only: %i[index show create]
 
   post 'promo_codes/discount'
+
+  post 'promo_codes/cancel'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

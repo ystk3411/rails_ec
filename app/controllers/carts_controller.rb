@@ -4,6 +4,8 @@ class CartsController < ApplicationController
   def index
     @items = current_cart.cart_items.includes([:item]).order(created_at: :desc)
     @order = Order.new
+    @promo_code = PromoCode.new
+    @discount = PromoCode.find_by(code: session[:register_code])
   end
 
   def create
