@@ -4,9 +4,9 @@ class PromoCodesController < ApplicationController
   def discount
     code = PromoCode.find_by(code: params[:promo_code][:code])
 
-    if code && code.status == true
+    if code && code.is_used?
       session[:register_code] = params[:promo_code][:code]
-      code.status = false
+      code.is_used = false
       code.save
     else
       flash[:danger] = '入力されたコードは無効です'
@@ -15,6 +15,9 @@ class PromoCodesController < ApplicationController
   end
 
   def cancel
+    code = PromoCode.find_by(code: session[:register_code])
+    code.is_used = true
+    code.save!
     session[:register_code].clear
     redirect_to request.referer
   end

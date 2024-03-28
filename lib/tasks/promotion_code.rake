@@ -5,7 +5,7 @@ namespace :promotion_code do
     10.times do
       code = SecureRandom.alphanumeric(7)
       discount = rand(100..1000)
-      PromoCode.create(code:, discount:, status: true)
+      PromoCode.create(code:code, discount:discount, is_used: true)
     end
   end
 end

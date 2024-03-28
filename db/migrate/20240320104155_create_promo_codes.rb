@@ -5,7 +5,7 @@ class CreatePromoCodes < ActiveRecord::Migration[7.0]
     create_table :promo_codes do |t|
       t.string :code
       t.integer :discount
-      t.boolean :status
+      t.boolean :is_used
 
       t.timestamps
     end
