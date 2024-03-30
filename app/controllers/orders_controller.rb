@@ -8,16 +8,17 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    # @order_details = OrderDetail.where(order_id: params[:id])
-    @order_details = @order.order_detail
-    # @order_price = OrderDetail.find(params[:id]).price
-    Rails.logger.debug @order_details
+    @order_details = OrderDetail.where(order_id: params[:id])
+    @order_price = OrderDetail.find_by(order_id: params[:id]).price
+    @discount = PromoCode.find_by(order_id: params[:id]).discount
+    Rails.logger.debug @discount
   end
 
   def create
     # メーラーのメソッドの引数として使用するためトランザクションのブロック外に変数を定義
     order = Order.new(order_params)
     order[:cart_id] = current_cart.id
+    discount = PromoCode.find_by(code: session[:register_code])
 
     ActiveRecord::Base.transaction do
       order.save!
@@ -28,9 +29,18 @@ class OrdersController < ApplicationController
         order_details.order_id = order.id
         order_details.item_id = item.item.id
         order_details.name = item.item.name
-        order_details.price = cart_price_total
+        order_details.price = if session[:register_code].present?
+                                cart_price_total - discount.discount
+                              else
+                                cart_price_total
+                              end
         order_details.quantity = item.quantity
         order_details.save!
+        discount.is_used = false
+        discount.order_id = order.id
+        session[:register_code].clear
+        discount.save!
+
       end
     end
 
