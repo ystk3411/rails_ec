@@ -2,8 +2,7 @@
 
 Rails.application.routes.draw do
   root 'items#index'
-  get 'orders/index'
-  get 'orders/show'
+
   namespace :admin do
     resources :items, only: %i[index new create edit update destroy]
   end

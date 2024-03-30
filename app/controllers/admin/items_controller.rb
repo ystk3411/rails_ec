@@ -3,6 +3,7 @@
 module Admin
   class ItemsController < ApplicationController
     before_action :basic_auth, only: %i[index new edit]
+    before_action :set_item, only: %i[edit update destroy]
 
     def index
       @items = Item.all
@@ -21,12 +22,9 @@ module Admin
       end
     end
 
-    def edit
-      @item = Item.find(params[:id])
-    end
+    def edit; end
 
     def update
-      @item = Item.find(params[:id])
       if @item.update(item_params)
         redirect_to admin_items_path
       else
@@ -35,7 +33,6 @@ module Admin
     end
 
     def destroy
-      @item = Item.find(params[:id])
       if @item.destroy
         redirect_to admin_items_path
       else
@@ -53,6 +50,10 @@ module Admin
 
     def item_params
       params.require(:item).permit(:name, :price, :describe, :sku, :stock, :image)
+    end
+
+    def set_item
+      @item = Item.find(params[:id])
     end
   end
 end

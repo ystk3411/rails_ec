@@ -3,7 +3,7 @@
 class OrdersController < ApplicationController
   # before_action :basic_auth, only: %i[index show]
   def index
-    @orders = current_cart.order
+    @orders = current_cart.orders
   end
 
   def show
@@ -40,6 +40,7 @@ class OrdersController < ApplicationController
         discount.order_id = order.id
         session[:register_code].clear
         discount.save!
+
       end
     end
 
