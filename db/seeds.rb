@@ -9,6 +9,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Item.destroy_all
+PromoCode.destroy_all
 
 items = [
   { name: 'おにぎり', price: rand(1000..2000), describe: 'test', sku: 'test', stock: rand(10) },
@@ -18,6 +19,12 @@ items = [
   { name: '餅', price: rand(1000..2000), describe: 'test', sku: 'test', stock: rand(10) },
   { name: '揚げ餃子', price: rand(1000..2000), describe: 'test', sku: 'test', stock: rand(10) }
 ]
+
+10.times do 
+  PromoCode.create(code: ('a'..'z').to_a.shuffle[0..7].join, 
+                   discount: rand(100..200), 
+                   is_used: false)
+end
 
 items.each do |item|
   item_data = Item.create!(item)

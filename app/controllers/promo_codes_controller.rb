@@ -4,7 +4,7 @@ class PromoCodesController < ApplicationController
   def discount
     code = PromoCode.find_by(code: params[:promo_code][:code])
 
-    if code&.is_used?
+    unless code&.is_used?
       session[:register_code] = params[:promo_code][:code]
       code.is_used = false
       code.save

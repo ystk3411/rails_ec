@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_details = OrderDetail.where(order_id: params[:id])
     @order_price = OrderDetail.find_by(order_id: params[:id]).price
-    @discount = PromoCode.find_by(order_id: params[:id]).discount
+    @discount = PromoCode.find_by(order_id: params[:id])&.discount
     Rails.logger.debug @discount
   end
 
@@ -36,11 +36,12 @@ class OrdersController < ApplicationController
                               end
         order_details.quantity = item.quantity
         order_details.save!
-        discount.is_used = false
-        discount.order_id = order.id
-        session[:register_code].clear
-        discount.save!
-
+        if discount
+          discount.is_used = false
+          discount.order_id = order.id
+          session[:register_code].clear
+          discount.save!  
+        end
       end
     end
 
