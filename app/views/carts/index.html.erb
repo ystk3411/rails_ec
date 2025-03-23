@@ -120,7 +120,12 @@
             </div>
           </div>
           <hr class="my-4">
-          <%= f.submit"購入する",class:"w-100 btn btn-primary btn-lg mb-5" %>
+          <% if @items.exists? %>
+            <%= f.submit"購入する",class:"w-100 btn btn-primary btn-lg mb-5" %>
+          <% else %>
+            <%= f.submit"購入する",class:"w-100 btn btn-primary btn-lg mb-5 disabled" %>
+          <% end %>
+          
         <% end %>
       </div>
     </div>

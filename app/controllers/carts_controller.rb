@@ -6,6 +6,7 @@ class CartsController < ApplicationController
     @order = Order.new
     @promo_code = PromoCode.new
     @discount = PromoCode.find_by(code: session[:register_code])
+    p @items.exists?
   end
 
   def create

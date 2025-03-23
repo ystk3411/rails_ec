@@ -16,7 +16,6 @@ class PromoCodesController < ApplicationController
 
   def cancel
     code = PromoCode.find_by(code: session[:register_code])
-    code.is_used = true
     code.save!
     session[:register_code].clear
     redirect_to request.referer

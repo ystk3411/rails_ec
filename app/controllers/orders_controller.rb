@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
-  # before_action :basic_auth, only: %i[index show]
+  before_action :basic_auth, only: %i[index show]
   def index
     @orders = current_cart.orders
   end
